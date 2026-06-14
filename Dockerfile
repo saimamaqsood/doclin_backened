@@ -8,7 +8,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1 libglib2.0-0 libsm6 libxext6 libxrender-dev \
     poppler-utils tesseract-ocr \
     && rm -rf /var/lib/apt/lists/*
-
+# Add to your Dockerfile (before pip install):
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    tesseract-ocr-urd \
+    tesseract-ocr-ara \
+    tesseract-ocr-hin \
+    tesseract-ocr-chi-sim \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
